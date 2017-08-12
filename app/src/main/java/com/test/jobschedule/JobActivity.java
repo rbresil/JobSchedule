@@ -51,7 +51,7 @@ public class JobActivity extends AppCompatActivity {
         final Button job2 = (Button) findViewById(R.id.button_job2);
         job2.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
-               // createServiceJob2();
+                createServiceJob2();
             }
         });
     }
@@ -67,6 +67,33 @@ public class JobActivity extends AppCompatActivity {
         int result = scheduler.schedule(jobInfo);
         if (result == JobScheduler.RESULT_SUCCESS) {
             Log.d(TAG, "TEST_BR Job1 scheduled successfully!");
+        }
+    }
+
+    private void createServiceJob2() {
+        job2Name = new ComponentName(getApplication(), ServiceJob2.class);
+
+//        final Uri LAUNCHER_PROVIDER_URI = Uri.parse("content://" + LauncherProvider.AUTHORITY + "/");
+//
+//        JobInfo.TriggerContentUri triggerContentUri =
+//                new JobInfo.TriggerContentUri(LAUNCHER_PROVIDER_URI, FLAG_NOTIFY_FOR_DESCENDANTS);
+
+        // Take a picture to test this Job
+        final Uri MEDIA_URI = Uri.parse("content://" + MediaStore.AUTHORITY + "/");
+
+        JobInfo.TriggerContentUri triggerContentUri =
+                new JobInfo.TriggerContentUri(MEDIA_URI, FLAG_NOTIFY_FOR_DESCENDANTS);
+
+        JobInfo jobInfo = new JobInfo.Builder(JOB2_ID, job2Name)
+                .addTriggerContentUri(triggerContentUri)
+                .build();
+
+        JobScheduler scheduler = (JobScheduler)
+                getApplication().getSystemService(getApplicationContext().JOB_SCHEDULER_SERVICE);
+
+        int result = scheduler.schedule(jobInfo);
+        if (result == JobScheduler.RESULT_SUCCESS) {
+            Log.d(TAG, "TEST_BR Job2 scheduled successfully!");
         }
     }
 
