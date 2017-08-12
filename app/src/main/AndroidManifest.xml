@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".JobActivity"
+            android:label="@string/job_activity_title">
+            <intent-filter>
+                <action android:name="com.clear.ACTION_FEATURE_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".ServiceJob1"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>
