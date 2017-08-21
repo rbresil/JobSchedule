@@ -5,4 +5,5 @@
     <!-- Button labels -->
     <string name="button_job1_title">Start Job1</string>
     <string name="button_job2_title">Start Job2</string>
+    <string name="button_job3_title">Start Job3</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.test.jobschedule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,11 +39,6 @@ public class JobActivity extends AppCompatActivity {
         final Button job1 = (Button) findViewById(R.id.button_job1);
         job1.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
-//                CharSequence text = "Start Job1 A6";
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-//                toast.show();
                 showToast(getApplicationContext(), "Start Job1 A1");
                 createServiceJob1();
             }
@@ -52,6 +48,13 @@ public class JobActivity extends AppCompatActivity {
         job2.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 createServiceJob2();
+            }
+        });
+
+        final Button job3 = (Button) findViewById(R.id.button_job3);
+        job3.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                createServiceJob3();
             }
         });
     }
@@ -95,6 +98,17 @@ public class JobActivity extends AppCompatActivity {
         if (result == JobScheduler.RESULT_SUCCESS) {
             Log.d(TAG, "TEST_BR Job2 scheduled successfully!");
         }
+    }
+
+    private void createServiceJob3() {
+        Log.d(TAG, "TEST_BR Job3 scheduled successfully!");
+
+        // Start the JobIntentService
+        Intent intent = new Intent();
+        intent.putExtra("LabelTeste", "TEST_BR testing JobIntentService");
+
+        SimpleJobIntentService.enqueueWork(getApplicationContext(), intent);
+        showToast(getApplicationContext(), "Starting JobIntentService");
     }
 
     public static void showToast(Context context, CharSequence text) {

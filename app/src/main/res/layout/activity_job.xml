@@ -30,5 +30,13 @@
             android:layout_below="@+id/button_job1"
             android:layout_alignStart="@+id/button_job1"
             android:layout_marginTop="39dp" />
+
+        <Button
+            android:id="@+id/button_job3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_job3_title"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/button_job2" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

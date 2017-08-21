@@ -3,6 +3,7 @@
     package="com.test.jobschedule">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -34,7 +35,10 @@
             android:name=".ServiceJob2"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
+        <service
+            android:name=".SimpleJobIntentService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".BootCompletedService"
             android:enabled="true"
@@ -48,7 +52,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
